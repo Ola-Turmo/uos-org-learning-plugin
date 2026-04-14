@@ -24,6 +24,10 @@ export interface Learning {
   createdAt: string;
   updatedAt: string;
   createdBy?: string;
+  /** ID of the learning that supersedes this one (when this learning is stale) */
+  supersededBy?: string;
+  /** IDs of learnings this one supersedes (when this is an update to prior knowledge) */
+  supersedes?: string[];
 }
 
 export interface LearningSummary {

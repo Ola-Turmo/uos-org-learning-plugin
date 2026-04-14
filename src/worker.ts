@@ -29,6 +29,7 @@ import {
   updateLearning,
   archiveLearning,
   queryLearnings,
+  queryLearningsWithRanking,
   computeSummary,
   computeHealth,
   getLearningsBySource,
@@ -40,6 +41,8 @@ import {
   createOrUpdateRetrospective,
   getRetrospective,
   seedDemoLearnings,
+  rehydrateFromDb,
+  supersedeLearning,
 } from "./helpers.js";
 
 import type {
@@ -251,7 +254,7 @@ const plugin = definePlugin({
           ),
         ];
 
-        const retro = createOrUpdateRetrospective({
+        const retro = await createOrUpdateRetrospective({
           scopeKind: "company",
           scopeId: "weekly-retro",
           keyFindings: highPriority.map((l) => l.title),
@@ -416,7 +419,7 @@ const plugin = definePlugin({
         }
 
         if (p.kind === "playbook") {
-          const playbook = createPlaybook({
+          const playbook = await createPlaybook({
             title,
             body,
             tags: parseTags(p.tags),
@@ -434,7 +437,7 @@ const plugin = definePlugin({
         }
 
         if (p.kind === "policy") {
-          const learning = createLearning({
+          const learning = await createLearning({
             title,
             body,
             source: (p.source as LearningCreateParams["source"]) ?? "manual",
@@ -453,7 +456,7 @@ const plugin = definePlugin({
         }
 
         // Default: knowledge_entry
-        const learning = createLearning({
+        const learning = await createLearning({
           title,
           body,
           source: (p.source as LearningCreateParams["source"]) ?? "manual",
