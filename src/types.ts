@@ -62,3 +62,120 @@ export interface LearningUpdateParams {
   status?: LearningStatus;
   priority?: LearningPriority;
 }
+
+// ---------------------------------------------------------------------------
+// LearningArtifact types
+// ---------------------------------------------------------------------------
+
+export type ArtifactKind = "knowledge_entry" | "playbook" | "policy";
+
+export interface KnowledgeEntry {
+  id: string;
+  title: string;
+  body: string;
+  tags: LearningTag[];
+  sourceInfo?: {
+    source: LearningSource;
+    sourceId?: string;
+    sourceName?: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+  createdBy?: string;
+}
+
+export interface Playbook {
+  id: string;
+  title: string;
+  body: string;
+  tags: LearningTag[];
+  sourceInfo?: {
+    source: LearningSource;
+    sourceId?: string;
+    sourceName?: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+  createdBy?: string;
+}
+
+export interface Policy {
+  id: string;
+  title: string;
+  body: string;
+  tags: LearningTag[];
+  sourceInfo?: {
+    source: LearningSource;
+    sourceId?: string;
+    sourceName?: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+  createdBy?: string;
+}
+
+// ---------------------------------------------------------------------------
+// Deliverable (from agent runs)
+// ---------------------------------------------------------------------------
+
+export type DeliverableStatus = "pending_review" | "approved" | "rejected";
+
+export interface Deliverable {
+  id: string;
+  relatedRunId: string;
+  agentId: string;
+  status: DeliverableStatus;
+  score?: number;
+  feedback?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// ---------------------------------------------------------------------------
+// Scorecard
+// ---------------------------------------------------------------------------
+
+export interface ScorecardHistoryEntry {
+  value: number;
+  timestamp: string;
+}
+
+export interface Scorecard {
+  scopeKind: string;
+  scopeId: string;
+  metricName: string;
+  currentValue: number;
+  targetValue: number;
+  history: ScorecardHistoryEntry[];
+}
+
+// ---------------------------------------------------------------------------
+// Retrospective
+// ---------------------------------------------------------------------------
+
+export type RetrospectiveStatus = "draft" | "pending_review" | "completed";
+
+export interface Retrospective {
+  scopeKind: string;
+  scopeId: string;
+  linkedDeliverableIds: string[];
+  keyFindings: string[];
+  actionItems: string[];
+  status: RetrospectiveStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// ---------------------------------------------------------------------------
+// AuditEntry
+// ---------------------------------------------------------------------------
+
+export type ActorType = "user" | "agent" | "system";
+
+export interface AuditEntry {
+  action: string;
+  actorId: string;
+  actorType: ActorType;
+  note?: string;
+  timestamp: string;
+}

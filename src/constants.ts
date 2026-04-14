@@ -7,10 +7,20 @@ export const PLUGIN_ID = "uos.org-learning" as const;
 // Event kinds this plugin subscribes to
 export const EVENTS_KINDS = [
   "issue.created",
-  "incident.created",
-  "project.completed",
-  "review.submitted",
+  "issue.updated",
+  "issue.comment.created",
+  "agent.run.started",
+  "agent.run.finished",
+  "agent.run.failed",
+  "agent.run.cancelled",
+  "approval.created",
+  "approval.decided",
 ] as const;
+
+// Job keys
+export const JOB_KEYS = {
+  WEEKLY_RETROSPECTIVE: "weekly-retrospective",
+} as const;
 
 // Data query keys
 export const DATA_KEYS = {
@@ -34,10 +44,29 @@ export const TOOL_KEYS = {
   SEARCH_LEARNINGS: "learning.search",
   CREATE_LEARNING: "learning.create",
   GET_LEARNING_HEALTH: "learning.health",
+  GET_PLAYBOOKS: "get-playbooks",
+  SEARCH_KNOWLEDGE: "search-knowledge",
+  RECORD_LEARNING: "record-learning",
 } as const;
+
+// Entity types
+export const ENTITY_TYPES = {
+  KNOWLEDGE_ENTRY: "knowledge_entry",
+  PLAYBOOK: "playbook",
+  POLICY: "policy",
+  DELIVERABLE: "deliverable",
+  SCORECARD: "scorecard",
+  RETROSPECTIVE: "retrospective",
+  AUDIT: "audit",
+} as const;
+
+// Scope kinds
+export const SCOPE_KINDS = ["company", "run", "goal", "agent"] as const;
 
 // UI export names (must match manifest slots)
 export const UI_EXPORTS = {
   LEARNING_WIDGET: "LearningWidget",
   LEARNING_HEALTH_WIDGET: "LearningHealthWidget",
+  RETRO_TAB: "RetroTab",
+  LEARNING_PAGE: "LearningPage",
 } as const;
