@@ -28,6 +28,28 @@ npm run plugin:test
 npm run plugin:dev
 ```
 
+## SurrealDB Cloud (production persistence)
+
+The plugin uses SurrealDB Cloud for durable persistence. Without env vars it runs in **in-memory mode** — data is lost on restart (fine for dev/CI).
+
+Copy `.env.example` to `.env` and fill in your credentials:
+
+```bash
+cp .env.example .env
+```
+
+### Required env vars
+
+| Variable | Value |
+|---|---|
+| `SURREALDB_URL` | `wss://<instance>-xxxxxxxxxxxx.aws-euw1.surrealdb.cloud` |
+| `SURREALDB_USER` | `root` (default) |
+| `SURREALDB_PASS` | Your SurrealDB Cloud password |
+| `SURREALDB_NS` | Namespace (e.g. `demo`) |
+| `SURREALDB_DB` | Database (e.g. `surreal_deal_store`) |
+
+For Paperclip platform deployment, set these in the plugin's environment configuration in the Paperclip dashboard.
+
 ## Architecture
 
 - `src/manifest.ts` — Plugin manifest (capabilities, UI slots, entrypoints)
