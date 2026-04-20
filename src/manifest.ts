@@ -9,7 +9,6 @@ const manifest: PaperclipPluginManifestV1 = {
     "Captures, indexes, and surfaces organizational learnings — ingests from incidents, agent runs, and approvals; surfaces playbooks, policies, and retrospective insights at decision points.",
   author: "Ola Turmo",
   categories: ["automation", "ui"],
-  minimumHostVersion: "2026.325.0",
   capabilities: [
     "events.subscribe",
     "jobs.schedule",
@@ -20,11 +19,12 @@ const manifest: PaperclipPluginManifestV1 = {
     "plugin.state.write",
     "ui.detailTab.register",
     "ui.dashboardWidget.register",
+    "ui.page.register",
     "agent.tools.register",
   ],
   entrypoints: {
-    worker: "dist/worker.js",
-    ui: "dist/ui/",
+    worker: 'dist/worker.js',
+    ui: 'dist/ui/',
   },
   jobs: [
     {
@@ -32,7 +32,7 @@ const manifest: PaperclipPluginManifestV1 = {
       displayName: "Weekly Retrospective",
       description:
         "Scans completed issues and agent runs from the past week and generates retrospective summaries and action items.",
-      schedule: "0 0 * * MON",
+      schedule: "0 0 * * 1",
     },
   ],
   tools: [
