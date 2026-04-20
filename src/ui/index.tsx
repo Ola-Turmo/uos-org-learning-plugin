@@ -3,6 +3,7 @@
  * Exports: LearningWidget, LearningHealthWidget, RetroTab, LearningPage
  */
 
+import * as React from "react";
 import type { CSSProperties } from "react";
 import {
   usePluginData,
